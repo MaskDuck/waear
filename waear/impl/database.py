@@ -21,3 +21,7 @@ class Database:
     async def query_allowed_servers(self):
         database = self.client.core.servers
         return [x["_id"] for x in database.find()]
+    
+    async def set_admin_role(self, server_id: int, role_id: int):
+        database = self.client[f'{server_id}'].config
+        database.insert_one({"_id": "admin_role", "admin_role": role_id})
