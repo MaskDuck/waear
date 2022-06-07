@@ -24,4 +24,31 @@ class Database:
     
     async def set_admin_role(self, server_id: int, role_id: int):
         database = self.client[f'{server_id}'].config
-        database.insert_one({"_id": "admin_role", "admin_role": role_id})
+        result = database.find_one({"_id": "admin_role"})
+        if result is not None:
+            database.update_one({"_id": "admin_role"}, {"$set": {"admin_role": role_id}})
+        database.insert_one({"_id": "admin_role", "admin_role": role_id}) 
+    
+    async def set_mod_role(self, server_id: int, role_id: int):
+        database = self.client[f'{server_id}'].config
+        result = database.find_one({"_id": "mod_role"})
+        if result is not None:
+            database.update_one({"_id": "mod_role"}, {"$set": {"mod_role": role_id}})
+        database.insert_one({"_id": "mod_role", "mod_role": role_id}) 
+    
+    async def set_helper_role(self, server_id: int, role_id: int):
+        database = self.client[f'{server_id}'].config
+        result = database.find_one({"_id": "helper_role"})
+        if result is not None:
+            database.update_one({"_id": "helper_role"}, {"$set": {"helper_role": role_id}})
+        database.insert_one({"_id": "helper_role", "helper_role": role_id}) 
+    
+
+    
+    async def get_admin_role(self, server_id: int):
+        database = self.client[f'{server_id}'].config
+        result = database.find_one({"_id": "admin_role"})
+        try:
+            return result['admin_role']
+        except:
+            return None
