@@ -16,7 +16,6 @@ class Bot(commands.Bot):
         self.db.set_root_server(int(ROOT_SERVER))
         for cog in COGS:
             self.load_extension(cog)
-        
 
     async def on_ready(self):
         self.logger.info("Bot successfully started")

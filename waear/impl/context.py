@@ -13,8 +13,7 @@ class Context(_BaseContext):
             return CHECK_MARK
         if state is None:
             return X_TICK
-    
+
     async def react(self, state: bool):
         with suppress(HTTPException):
             await self.message.add_reaction(self.tick(state))
-        
