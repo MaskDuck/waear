@@ -5,6 +5,10 @@ from impl.context import Context
 from logging import getLogger, INFO, StreamHandler
 from config import BOT_TOKEN, OWNER_ID, ROOT_SERVER, COGS
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 class Bot(commands.Bot):
     def __init__(self):
