@@ -1,13 +1,15 @@
 from os import getenv
 
+
 def _raisable_getenv(key, default=None, *, raise_if_none=False):
     output = getenv(key, default)
     if (not output) and (raise_if_none):
         raise KeyError("environment variable {} not found".format(key))
     return output
 
+
 # bot stuff
-COGS = ['exts.allowed_server_manager']
+COGS = ["exts.allowed_server_manager"]
 
 # required
 BOT_TOKEN = _raisable_getenv("BOT_TOKEN", raise_if_none=True)
