@@ -21,13 +21,13 @@ class AllowedServerManager(commands.Cog, command_attrs={"hidden": True}):
     @commands.command()
     @commands.is_owner()
     async def allow_server(self, ctx, server_id: int):
-        await ctx.db.add_allowed_server(server_id)
+        await ctx.bot.db.add_allowed_server(server_id)
         await ctx.react(True)
 
     @commands.command()
     @commands.is_owner()
     async def set_root_server(self, ctx, server_id: int):
-        await ctx.db.set_root(server_id)
+        await ctx.db.set_root_server(server_id)
         await ctx.react(True)
 
 

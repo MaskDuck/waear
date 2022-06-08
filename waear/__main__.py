@@ -6,6 +6,7 @@ from logging import getLogger, INFO, StreamHandler
 from config import BOT_TOKEN, OWNER_ID, ROOT_SERVER, COGS
 
 
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -18,7 +19,7 @@ class Bot(commands.Bot):
         self.logger.setLevel(INFO)
         self.logger.addHandler(StreamHandler())
         self.db = Database()
-        self.db.set_root_server(int(ROOT_SERVER))
+        self.db.set_initial_server(int(ROOT_SERVER))
         for cog in COGS:
             self.load_extension(cog)
 

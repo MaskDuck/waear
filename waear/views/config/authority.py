@@ -1,12 +1,14 @@
 from nextcord.ui import Modal, TextInput, View, button as ncbutton, Button
 from nextcord import ButtonStyle, Interaction
 from typing import Literal
+from embeds.config import main_embed
+from . import main_page
 
 class RolePromptModal(Modal):
     def __init__(self, type: Literal['admin', 'mod', 'helper']):
         super().__init__(title=f"Insert {type} Role ID", timeout=300.0)
         self.type = type
-        self.id = TextInput(name="Role ID?", custom_id=f'ti:config.authority.{type}.id')
+        self.id = TextInput(label="Role ID?")
         self.add_item(self.id)
     
     async def interaction_check(self, interaction) -> bool:
@@ -24,7 +26,7 @@ class RolePromptModal(Modal):
 
 class AuthorityView(View):
     def __init__(self):
-        ...
+        super().__init__()
     
     @ncbutton(label="Edit admin role", style=ButtonStyle.success)
     async def _edit_admin_role_callback(self, button: Button, interaction: Interaction):  # type: ignore
@@ -40,7 +42,7 @@ class AuthorityView(View):
     
     @ncbutton(label="Go home", style=ButtonStyle.success)
     async def _go_home_callback(self, button: Button, interaction: Interaction):  # type: ignore
-        await interaction.edit_original_message()
+        await interaction.edit_original_message(embed=main_embed(), view=main_page.MainView())
     
     
     
