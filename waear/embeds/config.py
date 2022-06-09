@@ -1,7 +1,7 @@
 from nextcord import Embed, Colour
+from typing import Union
 
-
-def authority_embed(admin_role=None, mod_role=None, helper_role=None):
+def authority_embed(admin_role: Union[int, str]=None, mod_role: Union[int, str]=None, helper_role: Union[int, str]=None) -> Embed:
     return Embed(
         title="Authority",
         description=f"""
@@ -14,7 +14,7 @@ def authority_embed(admin_role=None, mod_role=None, helper_role=None):
     )
 
 
-def main_embed():
+def main_embed() -> Embed:
     return Embed(
         title="Welcome to the config.",
         description="Choose a section below by the dropdown to config.",

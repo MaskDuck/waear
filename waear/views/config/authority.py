@@ -1,24 +1,25 @@
 from nextcord.ui import Modal, TextInput, View, button as ncbutton, Button
-from nextcord import ButtonStyle, Interaction
-from typing import Literal
+from nextcord import ButtonStyle, Interaction, Role
+from typing import Literal, Optional
 from embeds.config import main_embed, authority_embed
 from . import main_page
 
 
+
 class RolePromptModal(Modal):
-    def __init__(self, type: Literal["admin", "mod", "helper"], original_inter):
+    def __init__(self, type: Literal["admin", "mod", "helper"], original_inter: Interaction) -> None:
         super().__init__(title=f"Insert {type} Role ID", timeout=300.0)
-        self.type = type
-        self.id = TextInput(label="Role ID?")
+        self.type: str = type
+        self.id: TextInput = TextInput(label="Role ID?")
         self.add_item(self.id)
-        self.original_inter = original_inter
+        self.original_inter: Interaction = original_inter
 
     async def interaction_check(self, interaction) -> bool:
         return interaction.client.check_admin(interaction)
 
-    async def _verify_if_role_exist(self, interaction, role_id):
+    async def _verify_if_role_exist(self, interaction, role_id) -> bool:
         try:
-            result = interaction.guild.get_role(int(role_id))
+            result: Optional[Role] = interaction.guild.get_role(int(role_id))
         except ValueError:
             return False
         if not result:
