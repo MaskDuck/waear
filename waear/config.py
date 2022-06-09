@@ -1,6 +1,8 @@
 from os import getenv
 from dotenv import load_dotenv
+
 load_dotenv()
+
 
 def _raisable_getenv(key, default=None, *, raise_if_none=False):
     output = getenv(key, default)
@@ -10,7 +12,7 @@ def _raisable_getenv(key, default=None, *, raise_if_none=False):
 
 
 # bot stuff
-COGS = ["exts.allowed_server_manager", "exts.configuration"]
+COGS = ["exts.allowed_server_manager", "exts.configuration", "exts.owner"]
 
 # required
 BOT_TOKEN = _raisable_getenv("BOT_TOKEN", raise_if_none=True)
