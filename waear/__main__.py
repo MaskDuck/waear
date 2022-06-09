@@ -27,7 +27,7 @@ class Bot(commands.Bot):
         self.db.set_initial_server(int(ROOT_SERVER))
         for cog in COGS:
             self.load_extension(cog)
-    
+
     async def on_interaction(self, interaction):
         print(type(interaction.client))
         await self.process_application_commands(interaction)
