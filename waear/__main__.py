@@ -28,9 +28,7 @@ class Bot(commands.Bot):
         for cog in COGS:
             self.load_extension(cog)
 
-    async def on_interaction(self, interaction):
-        print(type(interaction.client))
-        await self.process_application_commands(interaction)
+
 
     async def on_ready(self):
         self.logger.info("Bot successfully started")

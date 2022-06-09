@@ -1,6 +1,6 @@
 from nextcord.ext import commands
 from nextcord import slash_command
-from waear.views.config.main_page import MainView
+from views.config.main_page import MainView
 from embeds.config import main_embed
 
 
