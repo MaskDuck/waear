@@ -1,8 +1,9 @@
 from nextcord.ui import Modal, TextInput, View, button as ncbutton, Button
 from nextcord import ButtonStyle, Interaction
 from typing import Literal
-from embeds.config import main_embed
+from embeds.config import main_embed, authority_embed
 from . import main_page
+
 
 
 class RolePromptModal(Modal):
