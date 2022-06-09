@@ -29,15 +29,20 @@ class RolePromptModal(Modal):
 
     async def callback(self, interaction):
         try:
-            if await self._verify_if_role_exist(interaction, role_id=int(self.id.value)) is False:
+            if (
+                await self._verify_if_role_exist(
+                    interaction, role_id=int(self.id.value)
+                )
+                is False
+            ):
                 await interaction.send(
                     "The role doesn't exist. Check the ID", ephemeral=True
                 )
                 return
         except ValueError:
             await interaction.send(
-                    "The role doesn't exist. Check the ID", ephemeral=True
-                )
+                "The role doesn't exist. Check the ID", ephemeral=True
+            )
             return
         if self.type == "admin":
             await interaction.client.db.set_admin_role(

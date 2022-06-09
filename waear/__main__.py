@@ -28,8 +28,6 @@ class Bot(commands.Bot):
         for cog in COGS:
             self.load_extension(cog)
 
-
-
     async def on_ready(self):
         self.logger.info("Bot successfully started")
 
