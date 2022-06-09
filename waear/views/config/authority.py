@@ -17,7 +17,12 @@ class RolePromptModal(Modal):
         return interaction.client.check_admin(interaction)
 
     async def _verify_if_role_exist(self, interaction, role_id):
-        return interaction.guild.get_role(role_id) is not None
+        result = interaction.guild.get_role(int(role_id))
+        if not result:
+            return False
+        if result.id != int(role_id):
+            return False
+        return True
 
     async def callback(self, interaction):
         if self._verify_if_role_exist == False:
@@ -32,18 +37,18 @@ class RolePromptModal(Modal):
             "I set the {} role to <@&{}>.".format(self.type, self.id.value), ephemeral=True
         )
         admin_role = await interaction.client.db.get_admin_role(
-                interaction.guild.id
-            )
-            mod_role = await interaction.client.db.get_mod_role(interaction.guild.id)
-            helper_role = await interaction.client.db.get_helper_role(
-                interaction.guild.id
-            )
-            await interaction.response.edit_message(
-                view=AuthorityView(),
-                embed=authority_embed(
-                    admin_role=admin_role, mod_role=mod_role, helper_role=helper_role
-                ),
-            )
+            interaction.guild.id
+        )
+        mod_role = await interaction.client.db.get_mod_role(interaction.guild.id)
+        helper_role = await interaction.client.db.get_helper_role(
+            interaction.guild.id
+        )
+        await interaction.response.edit_message(
+            view=AuthorityView(),
+            embed=authority_embed(
+                admin_role=admin_role, mod_role=mod_role, helper_role=helper_role
+            ),
+        )
         
         
 
