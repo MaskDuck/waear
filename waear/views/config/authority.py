@@ -5,9 +5,10 @@ from embeds.config import main_embed, authority_embed
 from . import main_page
 
 
-
 class RolePromptModal(Modal):
-    def __init__(self, type: Literal["admin", "mod", "helper"], original_inter: Interaction) -> None:
+    def __init__(
+        self, type: Literal["admin", "mod", "helper"], original_inter: Interaction
+    ) -> None:
         super().__init__(title=f"Insert {type} Role ID", timeout=300.0)
         self.type: str = type
         self.id: TextInput = TextInput(label="Role ID?")
@@ -15,7 +16,7 @@ class RolePromptModal(Modal):
         self.original_inter: Interaction = original_inter
 
     async def interaction_check(self, interaction) -> bool:
-        return interaction.client.check_admin(interaction)
+        return await interaction.client.check_admin(interaction)
 
     async def _verify_if_role_exist(self, interaction, role_id) -> bool:
         try:

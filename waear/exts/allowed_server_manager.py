@@ -4,6 +4,7 @@ from typing_extensions import Self
 from nextcord import Guild
 from impl.context import Context
 
+
 class AllowedServerManager(commands.Cog, command_attrs={"hidden": True}):
     def __init__(self, bot: commands.Bot):
         self.bot: commands.Bot = bot

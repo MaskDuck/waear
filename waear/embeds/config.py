@@ -1,7 +1,12 @@
 from nextcord import Embed, Colour
 from typing import Union
 
-def authority_embed(admin_role: Union[int, str]=None, mod_role: Union[int, str]=None, helper_role: Union[int, str]=None) -> Embed:
+
+def authority_embed(
+    admin_role: Union[int, str] = None,
+    mod_role: Union[int, str] = None,
+    helper_role: Union[int, str] = None,
+) -> Embed:
     return Embed(
         title="Authority",
         description=f"""
