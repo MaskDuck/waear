@@ -1,6 +1,6 @@
 # waear
 a selfhostable discord moderation bot. the name of it was created by me slapping the keyboard.
-# this bot is in development.
+# this bot is in development. THIS BOT IS NOT USABLE FOR NOW.
 
 # does it need to selfhost?
 **yes**. 
